@@ -3,23 +3,22 @@ name: Deploy to Surge
 on:
   push:
     branches:
-      
-main
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      
-name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-      
-name: Build and Deploy
-      run: |# Instalar Surge
-        npm install --global surge
-        # Configurar Surge con el token de API
-        echo ${{ secrets.SURGE_TOKEN }} | surge login --email heatfrank02@gmail.com --token
+      - name: Build and Deploy
+        run: |
+          # Instalar Surge
+          npm install --global surge
+          
+          # Configurar Surge con el token de API
+          echo ${{ secrets.SURGE_TOKEN }} | surge login --email heatfrank02@gmail.com --token
 
           # Desplegar en Surge.sh
-          surge --project ./src --domain ParcialFrankB.surge.sh
+          surge --project--domain ParcialFrankB.surge.sh
